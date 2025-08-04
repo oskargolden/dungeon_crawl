@@ -61,7 +61,7 @@ WEAPONS = [
     Weapon(name='Hand axe', cost=4, weight=30, damage='1d6',
            qualities=['Melee'],
            missile_range=Range(short='5’–10’', medium='11’–20’', long='21’–30’')),
-    Weapon(name='Holy water (vial)', cost=25, weight=0, damage='1d8',
+    Weapon(name='Holy water (thrown)', cost=25, weight=0, damage='1d8',
            qualities=['Splash weapon'],
            missile_range=Range(short='5’–10’', medium='11’–30’', long='31’–50’')),
     Weapon(name='Javelin', cost=1, weight=20, damage='1d4',
