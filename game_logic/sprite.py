@@ -1,5 +1,5 @@
 from dataclasses import dataclass, asdict, field
-from items import ITEMS
+from config.items import ITEMS
 
 
 @dataclass
@@ -27,6 +27,7 @@ class Sprite:
     })
     x: int = field(default=None)
     y: int = field(default=None)
+    z: int = field(default=None)
     health: int = field(default=None)
     speed: int = field(default=None)
 

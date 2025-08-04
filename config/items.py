@@ -3,6 +3,14 @@ from typing import List, Optional
 
 
 @dataclass(frozen=True, slots=True)
+class Range:
+    """A dataclass for storing short, medium, and long weapon ranges."""
+    short: str
+    medium: str
+    long: str
+
+
+@dataclass(frozen=True, slots=True)
 class Weapon:
     """A dataclass representing a single OSE weapon."""
     name: str

@@ -1,4 +1,6 @@
-from ..sprite import Sprite
+import pytest
+from dungeon_crawl.game_logic.sprite import Sprite
+from dungeon_crawl.config.items import ITEMS
 
 
 def test_sprite_default_values():
@@ -12,10 +14,10 @@ def test_sprite_default_values():
     assert sprite_obj.xp == 0
     assert sprite_obj.lvl == 0
     assert isinstance(sprite_obj.inventory, dict)
-    assert 'gold_coin' in sprite_obj.inventory
-    assert sprite_obj.inventory['gold_coin'] == 0
-    assert 'healing_potion' in sprite_obj.inventory
-    assert sprite_obj.inventory['healing_potion'] == 0
+    assert len(sprite_obj.inventory) == len(ITEMS)
+    for item in ITEMS:
+        assert item.name in sprite_obj.inventory
+        assert sprite_obj.inventory[item.name] == 0
 
     assert isinstance(sprite_obj.wearing, dict)
     assert 'head' in sprite_obj.wearing and sprite_obj.wearing['head'] is None
@@ -56,32 +58,16 @@ def test_sprite_to_dict_method():
     sprite_obj.wearing['chest'] = 'leather_vest'
     sprite_obj.stats['strength'] = 12
 
-    # Define the expected dictionary for comparison
+    # Dynamically build the expected inventory based on the ITEMS list.
+    # This is the key change that makes the test more maintainable.
+    expected_inventory = {item.name: 0 for item in ITEMS}
+    expected_inventory['gold_coin'] = 50
+    expected_inventory['healing_potion'] = 1
+
     expected_dict = {
         "xp": 150,
         "lvl": 3,
-        "inventory": {
-            'gold_coin': 50,
-            'healing_potion': 1,
-            'torch': 0,
-            # ... all other inventory items with count 0
-            'sword': 0, 'shield': 0, 'bow': 0, 'quiver_of_arrows': 0,
-            'dagger': 0, 'mace': 0, 'spear': 0, 'light_armor': 0,
-            'heavy_armor': 0, 'chain_mail': 0, 'leather_armor': 0,
-            'longsword': 0, 'greatsword': 0, 'hand_axe': 0, 'battle_axe': 0,
-            'mana_potion': 0, 'rations': 0, 'waterskin': 0,
-            'tinderbox': 0, 'rope_50ft': 0, 'bedroll': 0,
-            'scroll_of_fireball': 0, 'scroll_of_identify': 0,
-            'silver_coin': 0, 'copper_coin': 0,
-            'thieves_tools': 0, 'disguise_kit': 0, 'alchemists_supplies': 0,
-            'herbalism_kit': 0, 'cartographers_tools': 0, 'instrument': 0,
-            'backpack': 0, 'lantern': 0, 'crowbar': 0, 'caltrops': 0,
-            'piton': 0, 'hammer': 0, 'mirror': 0, 'perfume': 0,
-            'hourglass': 0, 'spyglass': 0,
-            'ring_of_protection': 0, 'cloak_of_invisibility': 0,
-            'wand_of_magic_missiles': 0, 'potion_of_flying': 0,
-            'bag_of_holding': 0,
-        },
+        "inventory": expected_inventory,
         "wearing": {
             'head': None, 'chest': 'leather_vest', 'arms': None, 'wrists': None,
             'hands': None, 'legs': None, 'feet': None, 'neck': None,
