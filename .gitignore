@@ -1,0 +1,84 @@
+# -----------------------------------------------------------
+# Python-specific files and directories
+# -----------------------------------------------------------
+
+# Byte-compiled / optimized / aot files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+dist/
+eggs/
+*.egg-info/
+.env
+
+# Virtual environment
+# This is a key part for your local development. Your Docker container
+# will have its own environment, so you don't need to commit your local one.
+venv/
+env/
+.venv/
+
+# mypy
+.mypy_cache/
+
+# pytest
+.pytest_cache/
+.coverage
+
+# Jupyter Notebook related
+.ipynb_checkpoints
+
+# -----------------------------------------------------------
+# Docker-specific files and directories
+# -----------------------------------------------------------
+
+# The Docker volumes directory. This is where a Docker container might
+# write persistent data, which you don't want to commit to Git.
+# Note: You might need to adjust this if you are using specific named volumes.
+volumes/
+
+# Docker build cache or logs.
+.dockerignore
+.docker-build-cache/
+
+# Logs from your container that you might map as a volume
+logs/
+*.log
+
+# -----------------------------------------------------------
+# Operating System files
+# -----------------------------------------------------------
+
+# Mac OS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# -----------------------------------------------------------
+# Common IDE / Editor files
+# -----------------------------------------------------------
+
+# Visual Studio Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+*~
+.swp
+.swo
+.swp
