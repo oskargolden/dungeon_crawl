@@ -53,3 +53,7 @@ class LayeredMap:
             tile.air = symbol
         else:
             tile.ceiling = symbol
+
+    def display(self):
+
+        pass

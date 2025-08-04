@@ -37,7 +37,7 @@ Enum access test: Test Layer.GROUND.value returns 0 +===========+ DONE
 
 3. LayeredMap Initialization Tests:
 
-Basic creation: Create 5x5 map, verify dimensions
+Basic creation: Create 5x5 map, verify dimensions +=============+ DONE
 Tiles structure: Verify tiles array has correct 3D structure
 Player defaults: Check player starts at (1,1) on GROUND layer
 Tile defaults: Verify all tiles start with default LayeredTile values
