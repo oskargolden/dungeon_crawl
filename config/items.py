@@ -1,6 +1,14 @@
+"""
+A library of immutable templates for all items in the game.
+
+This module defines the "blueprints" for every item that can exist. These
+classes all inherit from GameObject and are intended to be frozen, read-only
+data structures. The actual, mutable instances of these items that appear
+in the game are represented by the ItemEntity class.
+"""
+
 from dataclasses import dataclass, field
 from typing import List, Optional
-from game_logic.entities import Entity
 from game_logic.game_object import GameObject
 
 
@@ -15,7 +23,16 @@ class Range:
 # Each of the following classes now inherits from GameObject
 @dataclass(frozen=True, slots=True)
 class Weapon(GameObject):
-    """A dataclass representing a single weapon."""
+    """
+    A template for a weapon item.
+
+    Attributes:
+        cost (int): The cost of the weapon in currency.
+        weight (int): The weight of the weapon, affecting encumbrance.
+        damage (str): The damage dice formula (e.g., "1d8").
+        qualities (List[str]): A list of special properties (e.g., "Melee").
+        missile_range (Optional[Range]): The weapon's range, if any.
+    """
     cost: int
     weight: int
     damage: str
@@ -25,7 +42,14 @@ class Weapon(GameObject):
 
 @dataclass(frozen=True, slots=True)
 class Armor(GameObject):
-    """A dataclass representing a single armor item."""
+    """
+    A template for an armor item.
+
+    Attributes:
+        ac (str): The armor class value provided by the armor.
+        cost (int): The cost of the armor in currency.
+        weight (int): The weight of the armor, affecting encumbrance.
+    """
     ac: str
     cost: int
     weight: int
@@ -33,14 +57,26 @@ class Armor(GameObject):
 
 @dataclass(frozen=True, slots=True)
 class Ammunition(GameObject):
-    """A dataclass for ammunition."""
+    """
+    A template for an ammunition item.
+
+    Attributes:
+        cost (int): The cost of the ammunition in currency.
+        quantity (int): The number of pieces in one bundle (e.g., 20 arrows).
+    """
     cost: int
     quantity: int
 
 
 @dataclass(frozen=True, slots=True)
 class Item(GameObject):
-    """A general dataclass for adventuring gear and miscellaneous items."""
+    """
+    A template for general adventuring gear.
+
+    Attributes:
+        cost (int): The cost of the item in currency.
+        weight (int): The weight of the item, affecting encumbrance.
+    """
     cost: int
     weight: int = 0
 
@@ -500,7 +536,15 @@ ITEMS = WEAPONS + ARMOR + AMMUNITION + ADVENTURING_GEAR
 
 
 def find_item(name: str) -> Optional[GameObject]:
-    """Finds an item by its name, searching all item types."""
+    """
+    Finds an item template from the master ITEMS list by its name.
+
+    Args:
+        name (str): The case-insensitive name of the item to find.
+
+    Returns:
+        Optional[GameObject]: The found item template, or None if not found.
+    """
     for item in ITEMS:
         if item.name.lower() == name.lower():
             return item

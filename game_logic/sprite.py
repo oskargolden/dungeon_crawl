@@ -36,9 +36,6 @@ class Sprite(Entity):
     lvl: int = 0
     health: int = 10
     speed: int = 10
-    # The inventory is now a dictionary with a comprehensive list of items,
-    # all set to a default count of 0.
-    # The inventory is a LIST of GameObject instances
     inventory: List[ItemEntity] = field(default_factory=list)
     wearing: Dict[str, Optional[ItemEntity]] = field(default_factory=lambda: {
         'head': None, 'chest': None, 'arms': None, 'wrists': None,
@@ -61,35 +58,31 @@ class Sprite(Entity):
 
     def to_dict(self):
         """
-        Converts the Sprite object to a dictionary, manually handling
-        nested GameObjects for proper serialization.
+        Serializes the Sprite object and its contents into a dictionary.
+
+        This method creates a dictionary representation of the sprite, suitable
+        for saving game state. It recursively calls .to_dict() on nested
+        objects like items in the inventory.
+
+        Returns:
+            Dict: A dictionary containing the sprite's data.
         """
-        # Manually specify each field.
         return {
-            # Start with fields from the parent GameObject
             'name': self.base.name,
             'symbol': self.base.symbol,
             'description': self.base.description,
             'x': self.x,
             'y': self.y,
             'z': self.z,
-
-            # Add the simple fields from the Sprite class
             'xp': self.xp,
             'lvl': self.lvl,
             'health': self.health,
             'speed': self.speed,
-
-            # Now, handle the complex fields with your custom logic.
-            # This assumes every item in your inventory has its own .to_dict() method.
             'inventory': [item.to_dict() for item in self.inventory],
             'wearing': {
                 slot: item.to_dict() if item else None
                 for slot, item in self.wearing.items()
             },
-
-            # It's good practice to .copy() dictionaries and lists so the
-            # original object isn't accidentally modified later.
             'stats': self.stats.copy(),
             'skills': self.skills.copy(),
         }
