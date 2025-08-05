@@ -1,26 +1,31 @@
+# In your test_layered_maps.py
+from game_logic.game_object import GameObject  # Import the real class
 from game_logic.maps.layered_map import Layer, LayeredTile, LayeredMap
 
+# Dummy objects to use in your tests
+dummy_rock = GameObject(name="Rock", symbol="o", description="A simple rock.")
+dummy_bird = GameObject(name="Bird", symbol="b", description="A bird in the sky.")
 
-class TestLayeredTile:
-    def test_layered_tile(self):
-        assert LayeredTile.ground == '.'
-        assert LayeredTile.air == ' '
-        assert LayeredTile.ceiling == '.'
+# How to test the new LayeredTile
+tile = LayeredTile()
+assert tile.ground is None
+assert tile.air is None
+assert tile.ceiling is None
 
+# The updated test for Layer enum
+assert Layer.GROUND.value == "ground"
+assert Layer.AIR.value == "air"
 
-class TestLayer:
-    def test_layer_enum(self):
-        assert Layer.GROUND.value == 0
-        assert Layer.AIR.value == 1
-        assert Layer.CEILING.value == 2
+# How to test the new 2D structure
+map_obj = LayeredMap(width=10, height=5)
+assert len(map_obj.tiles) == 5  # Number of rows (height)
+assert len(map_obj.tiles[0]) == 10  # Number of columns (width)
+assert isinstance(map_obj.tiles[0][0], LayeredTile)
 
-
-class TestlayeredMap:
-
-    def test_layered_map_size(self):
-        map_obj = LayeredMap(5, 5)
-        assert map_obj.width == 5
-        assert map_obj.height == 5
+# A new "round trip" test will look like this
+map_obj.set_object(2, 2, Layer.GROUND, dummy_rock)
+retrieved_obj = map_obj.get_object(2, 2, Layer.GROUND)
+assert retrieved_obj is dummy_rock  # Use 'is' to check it's the exact same object
 
 
 """
@@ -32,12 +37,12 @@ Custom values test: Create tile with specific symbols
 Immutability test: Ensure you can modify the fields
 
 2. Layer Enum Tests:
-Enum values test: Verify GROUND=0, AIR=1, CEILING=2 +===========+ DONE
-Enum access test: Test Layer.GROUND.value returns 0 +===========+ DONE
+Enum values test: Verify GROUND=0, AIR=1, CEILING=2
+Enum access test: Test Layer.GROUND.value returns 0
 
 3. LayeredMap Initialization Tests:
 
-Basic creation: Create 5x5 map, verify dimensions +=============+ DONE
+Basic creation: Create 5x5 map, verify dimensions
 Tiles structure: Verify tiles array has correct 3D structure
 Player defaults: Check player starts at (1,1) on GROUND layer
 Tile defaults: Verify all tiles start with default LayeredTile values

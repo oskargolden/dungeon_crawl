@@ -3,7 +3,7 @@ from dataclasses import dataclass, field
 
 
 @dataclass
-class GameObject:
+class GameObject(frozen=True, slots=True):
     """The absolute base class for any object in the game world."""
     name: str
     symbol: str  # The character used to draw it on the map
