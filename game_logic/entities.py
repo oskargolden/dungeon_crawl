@@ -26,6 +26,8 @@ class Entity:
             Is `None` if the entity is not on the map.
         z (Optional[int]): The entity's current z-coordinate on the map.
             Is `None` if the entity is not on the map.     
+        custom_name (Optional[str]): An optional unique name for this entity 
+            Example: "Excalibur" for a sword, or "Bob" for a character.
     """
     
     
@@ -33,6 +35,9 @@ class Entity:
     x: Optional[int] = None   # Its current x-coordinate (can be changed)
     y: Optional[int] = None   # Its current y-coordinate (can be changed)
     z: Optional[int] = None   # Its current z-coordinate (can be changed)
+    
+    # Add an optional field to store a unique name
+    custom_name: Optional[str] = None
 
    
 @dataclass
