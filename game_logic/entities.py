@@ -5,7 +5,6 @@ from game_logic.game_object import GameObject
 
 @dataclass
 class Entity:
-    
     """
     Represents a single, unique instance of an object in the game world.
 
@@ -29,17 +28,14 @@ class Entity:
         custom_name (Optional[str]): An optional unique name for this entity 
             Example: "Excalibur" for a sword, or "Bob" for a character.
     """
-    
-    
     base: GameObject          # A reference to its frozen template
     x: Optional[int] = None   # Its current x-coordinate (can be changed)
     y: Optional[int] = None   # Its current y-coordinate (can be changed)
     z: Optional[int] = None   # Its current z-coordinate (can be changed)
-    
     # Add an optional field to store a unique name
     custom_name: Optional[str] = None
 
-   
+
 @dataclass
 class ItemEntity(Entity):
     """

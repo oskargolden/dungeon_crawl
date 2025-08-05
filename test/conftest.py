@@ -2,7 +2,6 @@ import sys
 import os
 import pytest
 
-# Add the project root directory to the Python path so we can find our modules
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from game_logic.game_object import GameObject
