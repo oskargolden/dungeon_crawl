@@ -54,6 +54,31 @@ class LayeredMap:
         else:
             tile.ceiling = symbol
 
-    def display(self):
+    def display_unicode_map(self, width=8, height=4):
 
-        pass
+        """
+        Draws a box using Unicode characters.
+        """
+        draw = self.draws[
+
+        if width < 2 or height < 2:
+            print("Error: Width and height must be at least 2.")
+            return
+
+        # Unicode characters for box drawing
+        TOP_LEFT = '┌'
+        TOP_RIGHT = '┐'
+        BOTTOM_LEFT = '└'
+        BOTTOM_RIGHT = '┘'
+        HORIZONTAL = '─'
+        VERTICAL = '│'
+
+        # Top border
+        print(f'{TOP_LEFT}{HORIZONTAL * (width - 2)}{TOP_RIGHT}')
+
+        # Middle rows
+        for _ in range(height - 2):
+            print(f'{VERTICAL}{" " * (width - 2)}{VERTICAL}')
+
+        # Bottom border
+        print(f'{BOTTOM_LEFT}{HORIZONTAL * (width - 2)}{BOTTOM_RIGHT}')
