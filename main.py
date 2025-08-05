@@ -6,9 +6,8 @@ from game_logic.maps.layered_map import LayeredMap
 
 
 def main():
-    sprite_obj = Sprite()
-    sprite_dict = sprite_obj.to_dict()
-    print(sprite_dict)
+    pass  # Placeholder for the main function logic
+   
 
 
 if __name__ == "__main__":

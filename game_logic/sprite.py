@@ -32,6 +32,37 @@ class Sprite(GameObject):
     })
 
     def to_dict(self):
-        # You'll need a custom method for this now that you have nested objects
-        # asdict() might not behave as you expect with complex types.
-        pass
+        """
+        Converts the Sprite object to a dictionary, manually handling
+        nested GameObjects for proper serialization.
+        """
+        # Manually specify each field.
+        return {
+            # Start with fields from the parent GameObject
+            'name': self.name,
+            'symbol': self.symbol,
+            'description': self.description,
+            'x': self.x,
+            'y': self.y,
+            'z': self.z,
+
+            # Add the simple fields from the Sprite class
+            'xp': self.xp,
+            'lvl': self.lvl,
+            'health': self.health,
+            'speed': self.speed,
+
+            # Now, handle the complex fields with your custom logic.
+            # This assumes every item in your inventory has its own .to_dict() method.
+            'inventory': [item.to_dict() for item in self.inventory],
+            'wearing': {
+                slot: item.to_dict() if item else None
+                for slot, item in self.wearing.items()
+            },
+
+            # It's good practice to .copy() dictionaries and lists so the
+            # original object isn't accidentally modified later.
+            'stats': self.stats.copy(),
+            'skills': self.skills.copy(),
+        }
+        
