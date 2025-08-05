@@ -5,7 +5,6 @@ from game_logic.entities import Entity, ItemEntity
 from game_logic.game_object import GameObject
 
 
-
 @dataclass
 class Sprite(Entity):
     """
@@ -31,7 +30,7 @@ class Sprite(Entity):
         skills (Dict[str, int]): A dictionary for the character's skills
             (e.g., 'acrobatics', 'stealth').
     """
-    
+
     xp: int = 0
     lvl: int = 0
     health: int = 10
@@ -53,7 +52,7 @@ class Sprite(Entity):
         'perception': 0, 'persuasion': 0, 'stealth': 0,
         'survival': 0, 'combat': 0, 'magic': 0, 'crafting': 0,
         'healing': 0, 'nature': 0, 'religion': 0, 'history': 0,
-        'technology': 0, 'social': 0, 
+        'technology': 0, 'social': 0,
     })
 
     def to_dict(self):
@@ -86,4 +85,3 @@ class Sprite(Entity):
             'stats': self.stats.copy(),
             'skills': self.skills.copy(),
         }
-        

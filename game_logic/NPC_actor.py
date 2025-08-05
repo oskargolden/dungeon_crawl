@@ -1,19 +1,16 @@
-# In a new file, e.g., game_logic/actor.py
-from dataclasses import dataclass, field
-from typing import List, Dict, Optional
-from game_logic.sprite import Sprite  # Import the new base class
+from dataclasses import dataclass
+from game_logic.sprite import Sprite
 
 
 @dataclass
 class NPCActor(Sprite):
     """
-    Represents any creature or character that can act, have stats,
-    and carry an inventory. Inherits from GameObject.
+    Represents a Non-Player Character in the game.
+
+    This is the base class for all computer-controlled actors, such as
+    monsters, shopkeepers, or quest givers. It inherits all the properties
+    of a Sprite (like health, stats, and an inventory).
     """
-    
-
-    
-
-   
-
-    
+    # You could add attributes common to all NPCs here later,
+    # for example, a 'dialogue_tree' or 'faction' attribute.
+    pass
