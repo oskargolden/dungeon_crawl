@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 from typing import List, Optional
+from game_logic.entities import Entity
 from game_logic.game_object import GameObject
 
 

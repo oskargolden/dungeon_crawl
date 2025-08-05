@@ -7,7 +7,6 @@ from game_logic.game_object import GameObject
 # from game_logic.game_object import GameObject
 
 
-
 class Layer(Enum):
     """An Enum to represent the distinct layers on a map tile."""
     GROUND = "ground"

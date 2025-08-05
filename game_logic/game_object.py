@@ -1,13 +1,23 @@
-#  game_logic.game_object
+# game_logic/game_object.py
 from dataclasses import dataclass, field
 
 
-@dataclass
-class GameObject(frozen=True, slots=True):
-    """The absolute base class for any object in the game world."""
+@dataclass(frozen=True, slots=True)
+class GameObject():
+    """A template for the intrinsic, immutable properties of an object type.
+
+    This class serves as a frozen blueprint for all items, characters, and
+    other objects in the game. It defines the core, unchangeable data that
+    is shared by all instances of a particular type. For example, all
+    "Sword" items will share the same base GameObject template.
+
+    Attributes:
+        name (str): The common name of the object (e.g., "Sword").
+        symbol (str): The single character used to represent this object on
+            the game map.
+        description (str): A detailed description of the object, which could
+            be shown to the player upon inspection.
+    """
     name: str
     symbol: str  # The character used to draw it on the map
     description: str
-    x: int = field(default=None, repr=False)  # Position is not always needed
-    y: int = field(default=None, repr=False)
-    z: int = field(default=None, repr=False)
