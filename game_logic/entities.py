@@ -35,11 +35,6 @@ class Entity:
     # Add an optional field to store a unique name
     custom_name: Optional[str] = None
 
-    @property
-    def symbol(self) -> str:
-        """Returns the symbol from the base GameObject template."""
-        return self.base.symbol
-
 
 @dataclass
 class ItemEntity(Entity):

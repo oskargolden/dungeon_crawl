@@ -84,12 +84,12 @@ class LayeredMap:
                 # Check air layer first
                 air_obj = self.get_object(x, y, Layer.AIR)
                 if air_obj:
-                    char_to_draw = air_obj.symbol
+                    char_to_draw = air_obj.base.symbol
                 else:
                     # Otherwise, check ground layer
                     ground_obj = self.get_object(x, y, Layer.GROUND)
                     if ground_obj:
-                        char_to_draw = ground_obj.symbol
+                        char_to_draw = ground_obj.base.symbol
                     else:
                         # If nothing is there, draw a default floor tile
                         char_to_draw = '.'
