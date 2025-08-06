@@ -36,6 +36,22 @@ class Entity:
     custom_name: Optional[str] = None
 
 
+"""
+This simplfies the attribute call method for game_object info retrival
+    @property
+    def symbol(self) -> str:
+        return self.base.symbol
+
+    @property
+    def name(self) -> str:
+        return self.base.name
+
+    @property
+    def description(self) -> str:
+        return self.base.description
+"""
+
+
 @dataclass
 class ItemEntity(Entity):
     """
