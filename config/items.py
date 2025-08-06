@@ -81,6 +81,28 @@ class Item(GameObject):
     weight: int = 0
 
 
+@dataclass(frozen=True, slots=True)
+class Scenery(GameObject):
+    """
+    A template for non-interactive scenery or clutter. Its primary purpose
+    is to provide a rich description for a cell.
+    """
+    pass
+
+
+@dataclass(frozen=True, slots=True)
+class SearchableScenery(Scenery):
+    """
+    A template for a scenery object that contains discoverable items.
+
+    Attributes:
+        discoverable_items (List[str]): A list of the names of item templates
+            that can be found when this scenery is searched.
+    """
+    # Use a field factory for mutable defaults like lists
+    discoverable_items: List[str] = field(default_factory=list)
+
+
 # --- DATA LISTS ---
 WEAPONS: List[Weapon] = [
     Weapon(

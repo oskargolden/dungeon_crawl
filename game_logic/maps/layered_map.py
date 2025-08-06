@@ -2,24 +2,43 @@ from dataclasses import dataclass
 from typing import Optional, List
 from enum import Enum
 from game_logic.game_object import GameObject
-
-# Assumes GameObject class exists, for example in:
-# from game_logic.game_object import GameObject
+from game_logic.entities import Entity
 
 
+@dataclass
 class Layer(Enum):
-    """An Enum to represent the distinct layers on a map tile."""
-    GROUND = "ground"
-    AIR = "air"
-    CEILING = "ceiling"
+    """An Enum representing the distinct layers on a map tile."""
+    # --- Physical Object Layers ---
+    GROUND = "ground"      # For solid objects, items, and characters on the floor.
+    LIQUID = "liquid"      # For pools of water, lava, etc.
+    DETAIL = "detail"      # For non-interactive scenery and clutter.
+
+    # --- Gameplay and Logic Layers ---
+    BLOCKING = "blocking"  # For invisible walls and impassable terrain.
+    TRIGGER = "trigger"    # For invisible pressure plates, traps, and event triggers.
+    EFFECTS = "effects"    # For temporary spells, gas clouds, etc.
+
+    # --- Vertical Layers ---
+    AIR = "air"            # For flying creatures, ropes, etc.
+    CEILING = "ceiling"    # For chandeliers, stalactites, etc.
 
 
 @dataclass
 class LayeredTile:
-    """Represents all layers for a single cell, now holding GameObjects."""
-    ground: Optional[GameObject] = None
-    air: Optional[GameObject] = None
-    ceiling: Optional[GameObject] = None
+    """Represents all layers for a single cell, holding Entity instances."""
+    # --- Physical Object Layers ---
+    ground: Optional[Entity] = None
+    liquid: Optional[Entity] = None
+    detail: Optional[Entity] = None  # THis is where the Scenery class goes.
+
+    # --- Gameplay and Logic Layers ---
+    blocking: Optional[Entity] = None
+    trigger: Optional[Entity] = None
+    effects: Optional[Entity] = None
+
+    # --- Vertical Layers ---
+    air: Optional[Entity] = None
+    ceiling: Optional[Entity] = None
 
 
 class LayeredMap:
