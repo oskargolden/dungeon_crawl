@@ -24,8 +24,8 @@ class Entity:
         y (Optional[int]): The entity's current y-coordinate on the map.
             Is `None` if the entity is not on the map.
         z (Optional[int]): The entity's current z-coordinate on the map.
-            Is `None` if the entity is not on the map.     
-        custom_name (Optional[str]): An optional unique name for this entity 
+            Is `None` if the entity is not on the map.
+        custom_name (Optional[str]): An optional unique name for this entity
             Example: "Excalibur" for a sword, or "Bob" for a character.
     """
     base: GameObject          # A reference to its frozen template
@@ -34,6 +34,11 @@ class Entity:
     z: Optional[int] = None   # Its current z-coordinate (can be changed)
     # Add an optional field to store a unique name
     custom_name: Optional[str] = None
+
+    @property
+    def symbol(self) -> str:
+        """Returns the symbol from the base GameObject template."""
+        return self.base.symbol
 
 
 @dataclass
