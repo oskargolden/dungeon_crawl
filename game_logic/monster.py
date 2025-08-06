@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from typing import List
-from game_logic.NPC_actor import NPCActor
+from game_logic.npc_actor import NPCActor
 
 
 @dataclass

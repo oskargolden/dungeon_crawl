@@ -316,4 +316,3 @@ MONSTERS = {
     "Mimic": MIMIC, "Rust Monster": RUST_MONSTER, "Carrion Crawler": CARRION_CRAWLER,
     "Displacer Beast": DISPLACER_BEAST, "Beholder": BEHOLDER, "Mind Flayer": MIND_FLAYER
 }
-

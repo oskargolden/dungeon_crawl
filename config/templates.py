@@ -1,4 +1,4 @@
-# config/templates.py
+# cofrom nfig/templates.py
 """Defines the hierarchy of immutable template classes for NPCs and monsters."""
 
 from dataclasses import dataclass, field
@@ -42,7 +42,8 @@ class SpecialAbility(Enum):
 
 @dataclass(frozen=True, slots=True)
 class NPCTemplate(GameObject):
-    """Base template for all non-player characters.
+    """
+    Base template for all non-player characters.
 
     Attributes:
         behavior (MonsterBehavior): The default AI behavior of the NPC.
@@ -52,13 +53,14 @@ class NPCTemplate(GameObject):
     """
     behavior: MonsterBehavior
     base_health: int
-    base_stats: Dict[str, int] = field(default_factory=dict)
-    loot_table: List[str] = field(default_factory=list)
+    base_stats: Dict[str, int]
+    loot_table: List[str]
 
 
 @dataclass(frozen=True, slots=True)
 class MonsterTemplate(NPCTemplate):
-    """A template specifically for hostile or potentially hostile monsters.
+    """
+    A template specifically for hostile or potentially hostile monsters.
 
     Inherits from NPCTemplate and adds attributes relevant for combat.
 
@@ -72,3 +74,7 @@ class MonsterTemplate(NPCTemplate):
     base_attack: int
     base_defense: int
     special_abilities: List[SpecialAbility] = field(default_factory=list)
+
+
+
+

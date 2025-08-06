@@ -8,7 +8,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 from game_logic.game_object import GameObject
 from game_logic.entities import Entity
 from game_logic.sprite import Sprite
-from game_logic.NPC_actor import NPCActor
+from game_logic.npc_actor import NPCActor
 from game_logic.monster import Monster
 
 
